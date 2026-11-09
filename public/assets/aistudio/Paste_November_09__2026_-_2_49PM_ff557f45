@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heal You | Tes Kesehatan Mental DASS-21</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap">
+<style>
+:root {
+  --bg: #fdf6fb;
+  --card: #fff;
+  --ink: #2e2745;
+  --mut: #665f84;
+  --bd: #e8ddf4;
+  --ac: #7a5fc4;
+  --acs: #f1eafc;
+  --ac2: #d64f86;
+  --g1: #fbd3e6;
+  --g2: #d9ccf7;
+  --g3: #cfe3fb;
+  --on: #fff;
+  --l0: #2f8a72;
+  --l1: #a98318;
+  --l2: #c4691c;
+  --l3: #c23b36;
+  --l4: #8e1f4a;
+  color-scheme: light;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1b1730;
+    --card: #272140;
+    --ink: #f1ecfb;
+    --mut: #b8afd3;
+    --bd: #3b3359;
+    --ac: #b9a5f5;
+    --acs: #332b52;
+    --ac2: #f19ac0;
+    --g1: #4a2a4a;
+    --g2: #352a66;
+    --g3: #1f3a5f;
+    --on: #1d1536;
+    --l0: #5fcfb0;
+    --l1: #e3c25a;
+    --l2: #f0a05a;
+    --l3: #f2736b;
+    --l4: #f27aa5;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1b1730;
+  --card: #272140;
+  --ink: #f1ecfb;
+  --mut: #b8afd3;
+  --bd: #3b3359;
+  --ac: #b9a5f5;
+  --acs: #332b52;
+  --ac2: #f19ac0;
+  --g1: #4a2a4a;
+  --g2: #352a66;
+  --g3: #1f3a5f;
+  --on: #1d1536;
+  --l0: #5fcfb0;
+  --l1: #e3c25a;
+  --l2: #f0a05a;
+  --l3: #f2736b;
+  --l4: #f27aa5;
+  color-scheme: dark;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+html {
+  background:
+    radial-gradient(60% 40% at 0% 0%, var(--g1), transparent),
+    radial-gradient(60% 40% at 100% 10%, var(--g2), transparent),
+    radial-gradient(80% 40% at 50% 100%, var(--g3), transparent),
+    var(--bg);
+  background-attachment: fixed;
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+body {
+  margin: 0;
+  color: var(--ink);
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 28px 18px 24px;
+}
+h1, h2 {
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0;
+}
+h1 {
+  font-size: clamp(1.9rem, 7vw, 2.6rem);
+}
+h2 {
+  font-size: clamp(1.35rem, 4.6vw, 1.7rem);
+  line-height: 1.35;
+}
+h1:focus, h2:focus {
+  outline: none;
+}
+p {
+  margin: 0 0 12px;
+}
+.lead {
+  font-size: 1.08rem;
+  color: var(--mut);
+  margin: 14px 0 24px;
+}
+.facts {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px;
+  display: grid;
+  gap: 14px;
+}
+.facts li {
+  padding-left: 14px;
+  border-left: 3px solid var(--ac);
+}
+.facts b {
+  display: block;
+}
+.facts span {
+  color: var(--mut);
+  font-size: .95rem;
+}
+.note {
+  background: var(--acs);
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: .92rem;
+  margin-top: 22px;
+}
+.btn {
+  background: linear-gradient(135deg, var(--ac2), var(--ac));
+  color: var(--on);
+  border: 1.5px solid var(--ac);
+  border-radius: 999px;
+  padding: 13px 26px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--ac);
+}
+.btn:disabled {
+  opacity: .4;
+  cursor: default;
+}
+:focus-visible {
+  outline: 3px solid var(--ac);
+  outline-offset: 2px;
+}
+.meta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--mut);
+  font-size: .9rem;
+  margin-bottom: 10px;
+}
+#bar {
+  display: grid;
+  grid-template-columns: repeat(21, 1fr);
+  gap: 3px;
+  margin-bottom: 30px;
+}
+#bar i {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bd);
+}
+#bar i.on {
+  background: var(--ac);
+}
+#bar i.cur {
+  background: var(--ac2);
+}
+.ask {
+  color: var(--mut);
+  font-size: .92rem;
+  margin-bottom: 8px;
+}
+#q {
+  min-height: 4.1em;
+}
+#opts {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0;
+}
+#opts button {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid var(--bd);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 18px;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+@media (hover: hover) {
+  #opts button:hover {
+    border-color: var(--ac);
+  }
+}
+#opts button[aria-pressed="true"] {
+  border-color: var(--ac);
+  background: var(--acs);
+}
+.dot {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  background: var(--acs);
+  color: var(--ac);
+}
+[aria-pressed="true"] .dot {
+  background: var(--ac);
+  color: var(--on);
+}
+#opts b {
+  display: block;
+  font-weight: 600;
+}
+#opts small {
+  color: var(--mut);
+  font-size: .84rem;
+}
+.hint {
+  color: var(--mut);
+  font-size: .82rem;
+  margin: 14px 0 0;
+}
+@media (hover: none) {
+  .hint {
+    display: none;
+  }
+}
+#cards {
+  display: grid;
+  gap: 14px;
+  margin: 22px 0;
+}
+.card {
+  background: var(--card);
+  border: 1.5px solid var(--bd);
+  border-radius: 22px;
+  padding: 18px 20px;
+  box-shadow: 0 8px 24px -12px rgba(122, 95, 196, .45);
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+.top h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.lv {
+  font-weight: 700;
+  color: var(--lc);
+}
+.sc {
+  margin: 6px 0 10px;
+}
+.sc b {
+  font: 600 2rem/1 Georgia, serif;
+}
+.sc span {
+  color: var(--mut);
+  font-size: .88rem;
+  margin-left: 6px;
+}
+.trk {
+  position: relative;
+  height: 10px;
+  border-radius: 5px;
+  background: var(--bd);
+  margin-bottom: 12px;
+}
+.fill {
+  height: 100%;
+  border-radius: 5px;
+  background: var(--lc);
+}
+.trk span {
+  position: absolute;
+  top: -3px;
+  width: 2px;
+  height: 16px;
+  background: var(--card);
+  opacity: .9;
+}
+.card p {
+  margin: 0;
+  font-size: .93rem;
+  color: var(--mut);
+}
+#care {
+  border-left: 4px solid var(--l3);
+  background: var(--card);
+  border-radius: 0 14px 14px 0;
+  padding: 14px 16px;
+  margin-bottom: 22px;
+  font-size: .95rem;
+}
+#care a {
+  color: var(--ac);
+  font-weight: 600;
+}
+.acts {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+footer {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 8px 18px 32px;
+  color: var(--mut);
+  font-size: .8rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 26px;
+  color: var(--ac);
+  line-height: 1.1;
+}
+.wm {
+  display: block;
+  font: 2.1rem/1 "Pinyon Script", "Snell Roundhand", cursive;
+}
+.brand small {
+  display: block;
+  font-size: .72rem;
+  color: var(--mut);
+  margin-top: 4px;
+}
+.brand > svg {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 9px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b9a5f5, #f4a6c8);
+  color: #fff;
+}
+#theme {
+  margin-left: auto;
+  background: var(--card);
+  color: var(--ink);
+  border: 1.5px solid var(--bd);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font: inherit;
+  font-size: .82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+#sum {
+  margin: 16px 0 0;
+  font-size: .95rem;
+}
+.card details {
+  margin-top: 12px;
+  border-top: 1px solid var(--bd);
+  padding-top: 10px;
+}
+.card summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ac);
+}
+.card details p {
+  margin: 8px 0;
+}
+.card h4 {
+  margin: 12px 0 4px;
+  font-size: .92rem;
+}
+.card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--mut);
+  font-size: .92rem;
+}
+.card li {
+  margin-bottom: 4px;
+}
+.cl {
+  display: grid;
+  gap: 3px;
+  margin: 8px 0;
+}
+.cl span {
+  font-size: .85rem;
+  color: var(--mut);
+}
+.cl i {
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--bd);
+}
+.cl b {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--ac2), var(--ac));
+}
+#plan {
+  margin-bottom: 22px;
+}
+#plan h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+.card ol {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  color: var(--mut);
+  font-size: .93rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+</style>
+</head>
+<body>
+<main>
+  <header class="brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/>
+      <path d="M5 19c3-4 6-7 10-9"/>
+    </svg>
+    <span>
+      <span class="wm">Heal You</span>
+      <small>Muslimah Healing Journey Community</small>
+    </span>
+    <button id="theme" type="button" aria-label="Ganti tema warna">Mode gelap</button>
+  </header>
+
+  <section id="intro">
+    <h1 tabindex="-1">Tes Kesehatan Mental DASS-21</h1>
+    <p class="lead">Kenali apa yang sedang kamu rasakan, lalu pulihkan pelan-pelan. Cukup 21 pernyataan singkat untuk melihat tingkat depresi, kecemasan, dan stres.</p>
+    <ul class="facts">
+      <li><b>3–5 menit</b><span>Satu pernyataan per layar, cukup pilih satu jawaban.</span></li>
+      <li><b>Tetap di perangkatmu</b><span>Jawaban tidak dikirim atau disimpan ke server mana pun.</span></li>
+      <li><b>Jawab sesuai seminggu terakhir</b><span>Tidak ada jawaban benar atau salah. Pilih yang paling sesuai.</span></li>
+    </ul>
+    <button class="btn" id="start" type="button">Mulai tes</button>
+    <p class="note"><b>Penting:</b> tes ini hanya skrining awal, bukan diagnosis klinis. Jika tekanan psikologis mengganggu aktivitas sehari-hari, konsultasikan dengan psikolog atau psikiater.</p>
+  </section>
+
+  <section id="quiz" hidden>
+    <div class="meta"><span>Pernyataan <b id="n">1</b> dari 21</span></div>
+    <div id="bar" aria-hidden="true"></div>
+    <p class="ask">Seberapa sesuai pernyataan ini dengan dirimu selama seminggu terakhir?</p>
+    <h2 id="q" tabindex="-1" aria-live="polite"></h2>
+    <div id="opts"></div>
+    <div class="acts">
+      <button class="btn ghost" id="back" type="button">Kembali</button>
+      <button class="btn ghost" id="next" type="button" hidden>Lanjut</button>
+    </div>
+    <p class="hint">Tip: tekan angka 0 sampai 3 untuk menjawab, panah kiri/kanan untuk navigasi.</p>
+  </section>
+
+  <section id="result" hidden>
+    <h2 tabindex="-1">Hasil skrining kamu</h2>
+    <p class="lead" style="margin-bottom:0">Ini potret seminggu terakhir, bukan label permanen. Skor sudah dikalikan 2 sesuai ketentuan DASS-21, dan garis putih pada bar menandai batas antartingkat.</p>
+    <div id="sum" class="note"></div>
+    <div id="cards"></div>
+    <div id="plan" class="card" hidden></div>
+    <div id="care" hidden>
+      <b>Kamu tidak harus menghadapi ini sendirian.</b>
+      <p style="margin:6px 0 0">Bicaralah dengan orang yang kamu percaya dan pertimbangkan menemui psikolog atau psikiater. Jika muncul pikiran untuk menyakiti diri sendiri atau mengakhiri hidup, hubungi layanan gratis Kemenkes di <b>119 ekstensi 8</b> atau lewat <a href="https://healing119.id" target="_blank" rel="noopener">healing119.id</a>. Dalam keadaan darurat, segera ke IGD terdekat.</p>
+    </div>
+    <p class="note" style="margin-top:0"><b>Kapan perlu bantuan profesional?</b> Pertimbangkan menemui psikolog atau psikiater jika gejala bertahan lebih dari dua minggu, mengganggu pekerjaan, sekolah, atau hubunganmu, atau terasa makin berat. Hasil ini adalah gambaran awal dan bukan diagnosis, karena hanya tenaga kesehatan jiwa yang dapat menilai kondisimu secara menyeluruh. Merasa sedih, lelah, atau cemas bukan tanda imanmu lemah, dan para nabi pun pernah merasakan sedih yang dalam. Berobat dan meminta bantuan profesional adalah bagian dari ikhtiar; Rasulullah ﷺ menganjurkan umatnya untuk berobat.</p>
+    <div class="acts" style="margin-top:20px">
+      <button class="btn" id="copy" type="button">Salin hasil</button>
+      <button class="btn ghost" id="again" type="button">Ulangi tes</button>
+    </div>
+  </section>
+</main>
+
+<footer>Heal You: <a href="https://www.instagram.com/healyou.official" target="_blank" rel="noopener" style="color:inherit">@healyou.official</a>. Instrumen DASS-21 disusun oleh Lovibond &amp; Lovibond (1995). Seluruh jawaban diproses di perangkatmu. Memuat ulang halaman akan menghapusnya.</footer>
+
+<script>
+const Q = [
+  ["Saya merasa sulit untuk menenangkan diri", "s"],
+  ["Saya merasa mulut saya kering", "a"],
+  ["Saya sama sekali tidak dapat merasakan perasaan positif", "d"],
+  ["Saya mengalami kesulitan bernapas (misalnya napas cepat atau terengah-engah tanpa aktivitas fisik)", "a"],
+  ["Saya merasa sulit untuk memulai melakukan sesuatu", "d"],
+  ["Saya cenderung bereaksi berlebihan terhadap suatu situasi", "s"],
+  ["Saya merasa gemetar (misalnya pada tangan)", "a"],
+  ["Saya merasa banyak menghabiskan energi karena cemas", "s"],
+  ["Saya khawatir akan situasi di mana saya bisa panik dan mempermalukan diri sendiri", "a"],
+  ["Saya merasa tidak ada hal yang dapat diharapkan di masa depan", "d"],
+  ["Saya merasa diri saya mudah gelisah", "s"],
+  ["Saya merasa sulit untuk bersantai", "s"],
+  ["Saya merasa sedih dan tertekan", "d"],
+  ["Saya tidak sabar terhadap hal apa pun yang menghalangi saya menyelesaikan apa yang sedang saya kerjakan", "s"],
+  ["Saya merasa hampir panik", "a"],
+  ["Saya tidak dapat merasa antusias terhadap hal apa pun", "d"],
+  ["Saya merasa tidak berharga sebagai seorang manusia", "d"],
+  ["Saya merasa diri saya agak mudah tersinggung", "s"],
+  ["Saya menyadari detak jantung saya meski tidak sedang beraktivitas fisik (misalnya jantung berdebar atau terlewat satu denyut)", "a"],
+  ["Saya merasa takut tanpa alasan yang jelas", "a"],
+  ["Saya merasa hidup tidak berarti", "d"]
+];
+
+const O = [
+  ["Tidak pernah", "Tidak sesuai dengan saya sama sekali"],
+  ["Kadang-kadang", "Sesuai dengan saya sampai tingkat tertentu"],
+  ["Sering", "Sesuai dengan saya sampai batas yang cukup besar"],
+  ["Sangat sering", "Sangat sesuai dengan saya, atau hampir setiap saat"]
+];
+
+const D = {
+  d: { n: "Depresi", t: [10, 14, 21, 28] },
+  a: { n: "Kecemasan", t: [8, 10, 15, 20] },
+  s: { n: "Stres", t: [15, 19, 26, 34] }
+};
+
+const L = ["Normal", "Ringan", "Sedang", "Berat", "Sangat berat"];
+
+const T = [
+  "Dalam rentang normal.",
+  "Ada gejala ringan. Perhatikan pola tidur, makan, dan aktivitasmu.",
+  "Gejala tingkat sedang. Bicara dengan orang tepercaya atau tenaga profesional bisa membantu.",
+  "Gejala tingkat berat. Disarankan berkonsultasi dengan psikolog atau psikiater.",
+  "Gejala sangat berat. Sebaiknya segera berkonsultasi dengan tenaga kesehatan jiwa."
+];
+
+const TL = [
+  "Skormu berada di rentang yang umum dialami banyak orang. Tidak ada tanda yang perlu dikhawatirkan saat ini.",
+  "Ada gejala yang mulai terasa, tetapi biasanya masih bisa dikelola sendiri. Ini saat yang baik memperhatikan tidur, makan, dan istirahat sebelum gejala menumpuk.",
+  "Gejala sudah cukup terasa dan kemungkinan mulai memengaruhi kegiatanmu. Berbagi dengan orang tepercaya dan mencoba konseling akan sangat membantu.",
+  "Gejala terasa kuat dan kemungkinan mengganggu aktivitas harianmu. Berkonsultasi dengan psikolog atau psikiater sangat disarankan, tidak perlu menunggu lebih parah.",
+  "Skormu berada pada tingkat tertinggi. Ini bukan tanda kamu lemah, melainkan tanda bahwa kamu butuh dukungan profesional sesegera mungkin."
+];
+
+const M = {
+  d: "Depresi pada DASS-21 menggambarkan suasana hati yang rendah, hilangnya semangat dan rasa berharga, serta pandangan yang suram tentang masa depan.",
+  a: "Kecemasan menggambarkan reaksi tubuh yang tegang (jantung berdebar, gemetar, napas pendek) dan rasa takut atau panik yang muncul tiba-tiba.",
+  s: "Stres menggambarkan ketegangan berkepanjangan: sulit rileks, mudah tersulut, gelisah, dan merasa terus siaga."
+};
+
+const P = {
+  d: [
+    "Mulai dari langkah sangat kecil: mandi, keluar rumah 10 menit, atau mengabari satu orang.",
+    "Jadwalkan satu kegiatan yang dulu kamu sukai, meski belum terasa menarik. Semangat sering muncul setelah bergerak, bukan sebelumnya.",
+    "Setiap malam, catat tiga hal kecil yang berjalan baik untuk melatih perhatianmu menangkap hal positif."
+  ],
+  a: [
+    "Latih napas 4-6: tarik napas 4 hitungan, hembuskan 6 hitungan, ulangi selama 2 menit saat tubuh terasa tegang.",
+    "Kurangi kafein dan pastikan tidurmu cukup, karena keduanya memperkuat debar dan rasa gelisah.",
+    "Saat rasa takut muncul, sebutkan 5 benda yang kamu lihat untuk membawa perhatian kembali ke saat ini."
+  ],
+  s: [
+    "Pisahkan waktu kerja dan istirahat, beri jeda 5 menit setiap 60 sampai 90 menit.",
+    "Tulis semua beban di kepala, lalu pilih satu yang bisa kamu selesaikan hari ini.",
+    "Gerak ringan seperti jalan kaki 15 sampai 20 menit membantu tubuh melepas ketegangan."
+  ]
+};
+
+const C = {
+  d: [["Semangat dan dorongan", [2, 4, 15]], ["Suasana hati, harapan, dan harga diri", [9, 12, 16, 20]]],
+  a: [["Reaksi tubuh", [1, 3, 6, 18]], ["Rasa takut dan panik", [8, 14, 19]]],
+  s: [["Sulit rileks dan gelisah", [0, 7, 10, 11]], ["Mudah tersulut", [5, 13, 17]]]
+};
+
+const CT = {
+  d: [
+    [
+      "Pilih satu tugas dan kerjakan hanya 5 menit, lalu boleh berhenti.",
+      "Beri penghargaan kecil setelah menyelesaikan sesuatu, supaya usaha terasa menyenangkan."
+    ],
+    [
+      "Bayangkan kamu bicara kepada sahabat yang merasa seperti dirimu, lalu ucapkan kalimat yang sama kepada dirimu sendiri.",
+      "Pikiran seperti “aku tidak berharga” adalah perasaan, bukan fakta. Ceritakan kepada orang tepercaya atau profesional agar tidak kamu tanggung sendiri."
+    ]
+  ],
+  a: [
+    [
+      "Jika debar, gemetar, atau sesak sering muncul, periksakan ke dokter untuk memastikan tidak ada sebab fisik.",
+      "Kurangi kafein, cukupkan tidur, dan minum air putih, karena ketiganya memengaruhi debar dan gemetar."
+    ],
+    [
+      "Sebut ketakutanmu dengan kalimat lengkap, lalu tanyakan: seberapa mungkin ini terjadi, dan apa yang akan kulakukan jika terjadi?",
+      "Kurangi menghindar: hadapi situasi yang ditakuti selangkah demi selangkah, mulai dari yang paling ringan."
+    ]
+  ],
+  s: [
+    [
+      "Coba relaksasi otot: kencangkan lalu lepaskan tiap kelompok otot dari kaki ke bahu, 5 detik per bagian.",
+      "Batasi layar dan notifikasi satu jam sebelum tidur supaya tubuh bisa turun dari mode siaga."
+    ],
+    [
+      "Saat mulai kesal, tunda reaksi 10 detik sambil menarik napas panjang sebelum menjawab.",
+      "Kenali pemicumu seperti lapar, kurang tidur, atau terburu-buru, lalu atasi dasarnya lebih dulu."
+    ]
+  ]
+};
+
+const SP = {
+  d: [
+    "Mulai harimu dengan satu amalan ringan yang konsisten, misalnya dua rakaat dhuha atau membaca satu halaman Al-Qur’an. Yang kecil tetapi rutin lebih menenangkan daripada target besar.",
+    "Ingat bahwa setiap manusia berharga di sisi Allah. Ceritakan isi hatimu dalam doa, tanpa menahan atau menghakimi dirimu sendiri."
+  ],
+  a: [
+    "Perlambat napas sambil berdzikir pelan seperti tasbih atau istighfar. Kamu juga bisa membaca doa berlindung dari gelisah dan sedih: Allahumma inni a’udzu bika minal hammi wal hazan.",
+    "Berdzikir pelan sambil menarik napas panjang membantu hatimu kembali ke saat ini, sambil tetap berikhtiar menghadapi sebab ketakutanmu."
+  ],
+  s: [
+    "Beri jeda dengan wudhu dan shalat tepat waktu, atau duduk tenang sejenak. Jeda ibadah bisa menjadi tempat tubuh dan pikiran beristirahat.",
+    "Saat marah, ucapkan ta’awudz, ubah posisi dari berdiri ke duduk, atau diam sejenak, sebagaimana dituntunkan Rasulullah ﷺ."
+  ]
+};
+
+const RM = {
+  d: "Maka sesungguhnya bersama kesulitan ada kemudahan. (QS. Al-Insyirah: 5–6)",
+  a: "Ingatlah, hanya dengan mengingat Allah hati menjadi tenteram. (QS. Ar-Ra’d: 28)",
+  s: "Allah tidak membebani seseorang melainkan sesuai dengan kesanggupannya. (QS. Al-Baqarah: 286)"
+};
+
+const $ = id => document.getElementById(id);
+const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+const LV = {};
+let i = 0, ans = [], lock = false, out = "";
+
+const cs = k => C[k].map((c, idx) => ({
+  i: idx,
+  n: c[0],
+  m: c[1].reduce((s, j) => s + ans[j], 0) / c[1].length
+}));
+
+const dom = k => {
+  const a = cs(k);
+  return a[1].m > a[0].m ? a[1] : a[0];
+};
+
+const sp = k => SP[k][dom(k).i];
+const max3 = () => Object.values(LV).some(v => v >= 3);
+
+function pola(k, lv) {
+  if (!lv) return "";
+  const a = cs(k), d = dom(k);
+  return '<h4>Pola gejalamu</h4>' +
+    a.map(c => '<div class="cl"><span>' + c.n + '</span><i><b style="width:' + (c.m / 3 * 100) + '%"></b></i></div>').join("") +
+    '<p>' + (Math.abs(a[0].m - a[1].m) < 0.5 ? 'Kedua kelompok gejala terasa hampir sama kuat.' : 'Gejalamu paling terasa pada <b>' + d.n.toLowerCase() + '</b>.') + '</p>';
+}
+
+function tips(k) {
+  const a = cs(k), d = dom(k), o = a[1 - d.i], t = CT[k][d.i].slice();
+  if (o.m >= 1.5) t.push(CT[k][o.i][0]);
+  return t;
+}
+
+function plan(f) {
+  const p = P[f];
+  const days = [
+    "Catat suasana hatimu (1 sampai 10) pagi dan malam, juga jam tidurmu.",
+    p[0],
+    p[1],
+    sp(f),
+    p[2],
+    "Hubungi satu orang yang membuatmu merasa aman dan ceritakan satu hal yang kamu rasakan, lalu tutup hari dengan doa dan syukur.",
+    "Tinjau catatanmu: apa yang paling membantu? Lanjutkan itu, dan ulangi tes setelah 2 sampai 4 minggu."
+  ];
+  return '<h3>Rencana 7 hari: fokus pada ' + D[f].n.toLowerCase() + '</h3>' +
+    '<p>Satu langkah kecil per hari. Tidak apa-apa melewatkan satu hari, lanjutkan saja besoknya.' + (max3() ? ' Rencana ini pendamping, bukan pengganti bantuan profesional.' : '') + '</p>' +
+    '<p><b>Pengingat hati:</b> ' + RM[f] + '</p>' +
+    '<ol>' + days.map(x => '<li>' + x + '</li>').join("") + '</ol>';
+}
+
+function deep(k, lv) {
+  const top = Q.map((q, j) => [q[0], ans[j], q[1]])
+    .filter(x => x[2] === k && x[1] >= 2)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3);
+  return '<details' + (lv ? ' open' : '') + '><summary>Analisis mendalam</summary>' +
+    '<p>' + M[k] + '</p><p>' + TL[lv] + '</p>' + pola(k, lv) +
+    (top.length ? '<h4>Yang paling terasa olehmu</h4><ul>' + top.map(x => '<li>' + x[0] + ' (' + O[x[1]][0].toLowerCase() + ')</li>').join("") + '</ul>' : '') +
+    '<h4>' + (lv ? 'Langkah pemulihan' : 'Menjaga kondisi tetap baik') + '</h4>' +
+    (lv ? '<ul>' + tips(k).concat(sp(k)).map(x => '<li>' + x + '</li>').join("") + '</ul>' : '<p>Pertahankan tidur cukup, gerak rutin, dan ruang untuk bercerita kepada orang terdekat.</p>') +
+    '</details>';
+}
+
+function summary(max) {
+  let g = '<b>Gambaran umum</b><br>';
+  if (!max) return g + 'Ketiga aspek berada dalam rentang normal. Pertahankan rutinitas yang membuatmu merasa baik, dan ulangi tes bila kondisimu berubah.';
+  const hi = ["d", "a", "s"].filter(k => LV[k] === max).map(k => D[k].n.toLowerCase());
+  g += 'Aspek yang paling menonjol: ' + hi.join(", ") + ' (tingkat ' + L[max].toLowerCase() + '). ';
+  if (LV.a >= 2 && LV.s >= 2) g += 'Kecemasan dan stres yang tinggi bersamaan sering menandakan tubuh dan pikiran terlalu lama dalam mode siaga, sehingga istirahat terasa kurang memulihkan. ';
+  if (LV.d >= 2 && (LV.a >= 2 || LV.s >= 2)) g += 'Suasana hati yang turun disertai ketegangan bisa saling memperkuat: lelah membuat sulit bergerak, dan tidak bergerak memperpanjang lelah. ';
+  if (LV.d >= 2 && LV.a < 2 && LV.s < 2) g += 'Gejalanya cenderung tenang di luar: tidak banyak ketegangan, tetapi energi dan minat menurun. Pola ini mudah terlewat orang sekitar, jadi mengutarakannya langsung itu penting. ';
+  return g + 'Mulailah dari satu langkah kecil pada aspek tertinggi, lalu lihat perubahannya dalam beberapa minggu.';
+}
+
+// Inisialisasi bar progres dan tombol opsi sekali saja agar fokus keyboard tidak hilang
+$("bar").innerHTML = "<i></i>".repeat(21);
+const optBtns = O.map((o, v) => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.innerHTML = '<span class="dot">' + v + '</span><span><b>' + o[0] + '</b><small>' + o[1] + '</small></span>';
+  b.onclick = () => pick(v);
+  $("opts").appendChild(b);
+  return b;
+});
+
+function show(id) {
+  ["intro", "quiz", "result"].forEach(s => $(s).hidden = s !== id);
+  const h = $(id).querySelector("h1,h2");
+  h.focus({ preventScroll: true });
+  window.scrollTo(0, 0);
+}
+
+function render() {
+  $("n").textContent = i + 1;
+  $("q").textContent = Q[i][0];
+  document.querySelectorAll("#bar i").forEach((e, k) => e.className = k < i ? "on" : k === i ? "cur" : "");
+  optBtns.forEach((b, v) => b.setAttribute("aria-pressed", ans[i] === v));
+  $("back").disabled = i === 0;
+  $("next").hidden = ans[i] === undefined;
+}
+
+function pick(v) {
+  if (lock) return;
+  ans[i] = v;
+  lock = true;
+  render();
+  setTimeout(() => {
+    lock = false;
+    if (i < Q.length - 1) {
+      i++;
+      render();
+    } else {
+      finish();
+    }
+  }, reduce ? 0 : 260);
+}
+
+function begin() {
+  i = 0;
+  ans = [];
+  render();
+  show("quiz");
+}
+
+function finish() {
+  const sc = { d: 0, a: 0, s: 0 };
+  Q.forEach((q, k) => sc[q[1]] += ans[k]);
+  const box = $("cards");
+  box.innerHTML = "";
+  let max = 0;
+  const lines = ["Hasil DASS-21 saya:"];
+  ["d", "a", "s"].forEach(k => {
+    const s = sc[k] * 2, t = D[k].t, lv = t.filter(x => s >= x).length;
+    max = Math.max(max, lv);
+    LV[k] = lv;
+    lines.push(D[k].n + ": " + s + " (" + L[lv] + ")");
+    const c = document.createElement("article");
+    c.className = "card";
+    c.style.setProperty("--lc", "var(--l" + lv + ")");
+    c.innerHTML = '<div class="top"><h3>' + D[k].n + '</h3><span class="lv">' + L[lv] + '</span></div>' +
+      '<div class="sc"><b>' + s + '</b><span>dari 42</span></div>' +
+      '<div class="trk"><div class="fill" style="width:' + (s / 42 * 100) + '%"></div>' +
+      t.map(x => '<span style="left:' + (x / 42 * 100) + '%"></span>').join("") + '</div>' +
+      '<p>' + T[lv] + '</p>' + deep(k, lv);
+    box.appendChild(c);
+  });
+  $("sum").innerHTML = summary(max);
+  const f = ["d", "a", "s"].sort((x, y) => LV[y] - LV[x] || sc[y] - sc[x])[0];
+  $("plan").hidden = !max;
+  if (max) $("plan").innerHTML = plan(f);
+  $("care").hidden = !(ans[20] >= 1 || max >= 3);
+  out = lines.join("\n");
+  show("result");
+}
+
+$("start").onclick = begin;
+$("again").onclick = begin;
+$("back").onclick = () => {
+  if (i > 0 && !lock) {
+    i--;
+    render();
+  }
+};
+$("next").onclick = () => {
+  if (ans[i] !== undefined && !lock) {
+    if (i < Q.length - 1) {
+      i++;
+      render();
+    } else {
+      finish();
+    }
+  }
+};
+$("copy").onclick = async () => {
+  const b = $("copy");
+  try {
+    await navigator.clipboard.writeText(out);
+    b.textContent = "Tersalin";
+  } catch (e) {
+    b.textContent = "Tidak bisa menyalin";
+  }
+  setTimeout(() => b.textContent = "Salin hasil", 1800);
+};
+
+// Pengendali tema gelap/terang
+const root = document.documentElement;
+const darkMedia = matchMedia("(prefers-color-scheme:dark)");
+function syncThemeBtn() {
+  const isDark = root.dataset.theme ? root.dataset.theme === "dark" : darkMedia.matches;
+  $("theme").textContent = isDark ? "Mode terang" : "Mode gelap";
+}
+$("theme").onclick = () => {
+  const isDark = root.dataset.theme ? root.dataset.theme === "dark" : darkMedia.matches;
+  root.dataset.theme = isDark ? "light" : "dark";
+  syncThemeBtn();
+};
+syncThemeBtn();
+
+document.addEventListener("keydown", e => {
+  if ($("quiz").hidden || e.metaKey || e.ctrlKey || e.altKey || lock) return;
+  if (/^[0-3]$/.test(e.key)) {
+    pick(+e.key);
+  } else if (e.key === "ArrowLeft" && i > 0) {
+    i--;
+    render();
+  } else if (e.key === "ArrowRight" && ans[i] !== undefined) {
+    if (i < Q.length - 1) {
+      i++;
+      render();
+    } else {
+      finish();
+    }
+  }
+});
+</script>
+</body>
+</html>

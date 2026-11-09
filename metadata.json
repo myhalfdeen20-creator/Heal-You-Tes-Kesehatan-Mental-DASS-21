@@ -1,0 +1,6 @@
+{
+  "name": "Heal You | Tes Kesehatan Mental DASS-21",
+  "description": "Skrining kesehatan mental DASS-21 oleh Heal You (Muslimah Healing Journey Community) untuk mengenali tingkat depresi, kecemasan, dan stres.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
